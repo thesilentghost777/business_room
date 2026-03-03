@@ -23,7 +23,7 @@ use App\Http\Controllers\BusMetro\Adherent\PaiementController as AdherentPaiemen
 use App\Http\Controllers\BusMetro\Adherent\FinancementController as AdherentFinancement;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('busmetro.auth.adherent-login');
 });
 
 Route::prefix('busmetro')->name('busmetro.')->group(function () {
