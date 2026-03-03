@@ -21,12 +21,11 @@ use App\Http\Controllers\BusMetro\Direction\AnalyseController as DirectionAnalys
 use App\Http\Controllers\BusMetro\Adherent\DashboardController as AdherentDashboard;
 use App\Http\Controllers\BusMetro\Adherent\PaiementController as AdherentPaiement;
 use App\Http\Controllers\BusMetro\Adherent\FinancementController as AdherentFinancement;
-use App\Http\Controllers\BusMetro\Admin\ConfigurationController as ConfigurationController;
-
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::prefix('busmetro')->name('busmetro.')->group(function () {
 
     // ================================================================
@@ -184,28 +183,4 @@ Route::prefix('busmetro')->name('busmetro.')->group(function () {
         Route::post('carnet', [AdherentFinancement::class, 'ajouterRecette'])->name('carnet.ajouter');
     });
 
-
-});
-
-// Dans ton groupe de routes busmetro.admin
-Route::prefix('configuration')->name('busmetro.admin.configuration.')->group(function () {
-    Route::get('/',         [ConfigurationController::class, 'index'])->name('index');
-    Route::post('/',        [ConfigurationController::class, 'updateConfigs'])->name('update');
-
-    // Kits
-    Route::post('/kit',            [ConfigurationController::class, 'storeKit'])->name('kit.store');
-    Route::put('/kit/{kit}',       [ConfigurationController::class, 'updateKit'])->name('kit.update');
-    Route::delete('/kit/{kit}',    [ConfigurationController::class, 'destroyKit'])->name('kit.destroy');
-
-    // Cotisations
-    Route::post('/cotisation',                            [ConfigurationController::class, 'storeTypeCotisation'])->name('cotisation.store');
-    Route::put('/cotisation/{typeCotisation}',            [ConfigurationController::class, 'updateTypeCotisation'])->name('cotisation.update');
-
-    // Scoring
-    Route::post('/scoring',                              [ConfigurationController::class, 'storeCritereScoring'])->name('scoring.store');
-    Route::put('/scoring/{critereScoring}',              [ConfigurationController::class, 'updateCritereScoring'])->name('scoring.update');
-
-    // Profils
-    Route::post('/profil',           [ConfigurationController::class, 'storeProfil'])->name('profil.store');
-    Route::put('/profil/{profil}',   [ConfigurationController::class, 'updateProfil'])->name('profil.update');
 });
